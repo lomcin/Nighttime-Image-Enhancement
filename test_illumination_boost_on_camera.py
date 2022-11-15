@@ -2,7 +2,7 @@ import os, sys
 import cv2
 import glob
 import time
-from illumination_boost import *
+from illumination_boost_lut import *
 
 
 # last frame received timestamp
