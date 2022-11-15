@@ -2,6 +2,7 @@
 Repository which replicates the results obtained by Al-Ameen, Zohair in his paper entitled  _[Nighttime image enhancement using a new illumination boost algorithm](https://ieeexplore.ieee.org/document/8741330)_, published at [IET Image Processing Journal](https://digital-library.theiet.org/content/journals/iet-ipr).
 
 The code was implemented using MATLAB, following the steps presented in the paper. And translated to Python using OpenCV, Numpy and SciPy.
+**With LUT optimization for faster enhanced image calculation in Python!!! Up to 200x faster than the Python converted version!!!**
 
 ## Usage (MATLAB)
 The [`illumination_boost.m`](./illumination_boost.m) file contains the main (and only) function for the algorithm. It accepts an RGB image, and a Lambda parameter used in equations `4` and `6` in the paper, which, according to the paper, acquire best results with values between 2 and 7. It returns an RGB image with `double` type.
