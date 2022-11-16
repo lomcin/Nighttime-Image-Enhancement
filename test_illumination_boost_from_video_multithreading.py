@@ -11,14 +11,17 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 # Lambda parameter
 _lambda = 2
 
-MAX_BUFFERED_FRAMES = 2
-MAX_PROCESSING_THREADS = 1
+MAX_BUFFERED_FRAMES = 4
+MAX_PROCESSING_THREADS = 10
 
 # Exit flag
 Exit = False
 
 # Use original
 use_original = False
+
+# Use lut
+use_lut = True
 
 # Threads
 camera_thread = None
@@ -31,7 +34,7 @@ processed_frames = list()
 def process_frame(img):
     global _lambda
     prev_proc_frame_time = time.time()
-    out = illumination_boost(img, _lambda)
+    out = illumination_boost(img, _lambda, use_lut=use_lut)
     new_proc_frame_time = time.time()
     processing_time = str(int(1000*(new_proc_frame_time - prev_proc_frame_time))) + ' ms'
     return (out, processing_time)
@@ -68,7 +71,7 @@ def processing_func():
             time.sleep(0.001)
 
 def show_result_func():
-    global Exit, processed_frames, use_original
+    global Exit, processed_frames, use_original, use_lut
     prev_frame_time = 0
     while not Exit:
         try:
@@ -89,6 +92,8 @@ def show_result_func():
                 break
             elif ret == ord('d'):
                 use_original = not use_original
+            elif ret == ord('a'):
+                use_lut = not use_lut
 
 def camera_func(vc):
     prev_frame_time = 0
